@@ -18,7 +18,7 @@ TEST_CASE("Rectange is made correctly with constructor", "[rectangle]")
   two.x = 3;
   two.y = 3;
   three.x = 3;
-  three.x = 0;
+  three.y = 0;
 
   Rectangle test_rectangle = Rectangle(one, two);
   Rectangle test_rectangle_point = Rectangle(one, one);
@@ -41,16 +41,16 @@ TEST_CASE("Rectange is made correctly with constructor", "[rectangle]")
     REQUIRE(test_rectangle_reversed.GetHeight() == 3);
   }
 
-  // SECTION("Returns true if two rectanges share a point"){
-  //   Point three, four;
-  //   three.x = 2;
-  //   three.y = 2;
-  //   four.x = 5;
-  //   four.y = 5;
-  //   Rectangle test_rectangle_2 = Rectangle(three, four);
+  SECTION("Returns true if two rectanges share a point"){
+    Point four, five;
+    four.x = 1;
+    four.y = 1;
+    five.x = 3;
+    five.y = 3;
+    Rectangle test_rectangle_2 = Rectangle(four, five);
 
-  //   REQUIRE(test_rectangle.Overlaps(test_rectangle_2) == true);
-  // }
+    REQUIRE(test_rectangle.Overlaps(test_rectangle_2) == true);
+  }
 
   SECTION("Correctly getting the area of the rectangle")
   {
