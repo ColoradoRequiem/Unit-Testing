@@ -43,13 +43,21 @@ TEST_CASE("Rectange is made correctly with constructor", "[rectangle]")
 
   SECTION("Returns true if two rectanges share a point"){
     Point four, five;
-    four.x = 1;
-    four.y = 1;
-    five.x = 3;
-    five.y = 3;
+    four.x = 0;
+    four.y = 0;
+    five.x = 2;
+    five.y = 2;
     Rectangle test_rectangle_2 = Rectangle(four, five);
 
+    Point six, seven;
+    six.x = 1;
+    six.y = 1;
+    seven.x = 3;
+    seven.y = 3;
+    Rectangle test_rectangle_3 = Rectangle(six, seven);
+
     REQUIRE(test_rectangle.Overlaps(test_rectangle_2) == true);
+    REQUIRE(test_rectangle.Overlaps(test_rectangle_3) == true);
   }
 
   SECTION("Correctly getting the area of the rectangle")
