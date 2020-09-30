@@ -62,3 +62,57 @@ bool Rectangle::Overlaps(Rectangle &other)
 
     return false;
 }
+
+void Rectangle::Expand(){
+    Point p1_n;
+    Point p2_n;
+    p1_n.x = get_p1().x + 1;
+    p1_n.y = get_p1().y + 1;
+    p2_n.x = get_p2().x + 1;
+    p2_n.y = get_p2().y + 1;
+
+    p1_ = p1_n;
+    p2_ = p2_n;
+}
+
+void Rectangle::Shrink(){
+
+    Point p1_n;
+    Point p2_n;
+
+    if(GetHeight() == 0 && GetWidth() == 0){
+        return;
+    }
+
+    if(GetHeight() == 0){
+        p1_n.x = get_p1().x - 1;
+        p1_n.y = get_p1().y;
+        p2_n.x = get_p2().x - 1;
+        p2_n.y = get_p2().y;
+
+        p1_ = p1_n;
+        p2_ = p2_n;
+
+        return;
+    }
+
+    if(GetWidth() == 0){
+        p1_n.x = get_p1().x;
+        p1_n.y = get_p1().y - 1;
+        p2_n.x = get_p2().x;
+        p2_n.y = get_p2().y - 1;
+
+        p1_ = p1_n;
+        p2_ = p2_n;
+
+        return;
+    }
+
+    p1_n.x = get_p1().x - 1;
+    p1_n.y = get_p1().y - 1;
+    p2_n.x = get_p2().x - 1;
+    p2_n.y = get_p2().y - 1;
+
+    p1_ = p1_n;
+    p2_ = p2_n;
+}
