@@ -56,8 +56,25 @@ TEST_CASE("Rectange is made correctly with constructor", "[rectangle]")
     seven.y = 3;
     Rectangle test_rectangle_3 = Rectangle(six, seven);
 
+    Point eight, nine;
+    eight.x = -3;
+    eight.y = -3;
+    nine.x = 0;
+    nine.y = 0;
+    Rectangle test_rectangle_4 = Rectangle(eight, nine);
+
+    Point ten, eleven;
+    ten.x = 3;
+    ten.y = 3;
+    eleven.x = 6;
+    eleven.y = 6;
+    Rectangle test_rectangle_5 = Rectangle(ten, eleven);
+
     REQUIRE(test_rectangle.Overlaps(test_rectangle_2) == true);
     REQUIRE(test_rectangle.Overlaps(test_rectangle_3) == true);
+    REQUIRE(test_rectangle.Overlaps(test_rectangle_4) == true);
+    REQUIRE(test_rectangle.Overlaps(test_rectangle_5) == true);
+
   }
 
   SECTION("Correctly getting the area of the rectangle")
