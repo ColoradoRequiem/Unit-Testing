@@ -64,28 +64,79 @@ int Rectangle::CalculateArea()
 }
 
 /**
- * A function that returns true if this rectangle shares any points with the other one. I am making the assumption they
- * are referring to sharing points used to make the rectangles. There was a glitch where p1 of a rectangle was being checked, but not p2
- * of a rectangle, so I have fixed that below.
+ * A function that returns true if this rectangle shares any points with the other one. There was a glitch where p1 of a rectangle was
+ *  being checked and considered, but not p2 of a rectangle, so I have fixed that below.
  * 
  * @param other : The second rectange to compare and figure out if it overlaps or not
  */
 bool Rectangle::Overlaps(Rectangle &other)
 {
-    if((get_p1().x == other.get_p1().x && get_p1().y == other.get_p1().y)){
+    if ((get_p1().x == other.get_p1().x && get_p1().y == other.get_p1().y))
+    {
         return true;
     }
 
-    if((get_p1().x == other.get_p2().x && get_p1().y == other.get_p2().y)){
+    if ((get_p1().x == other.get_p2().x && get_p1().y == other.get_p2().y))
+    {
         return true;
     }
 
-    if((get_p2().x == other.get_p2().x && get_p2().y == other.get_p2().y)){
+    if ((get_p2().x == other.get_p2().x && get_p2().y == other.get_p2().y))
+    {
         return true;
     }
 
-    if((get_p2().x == other.get_p1().x && get_p2().y == other.get_p1().y)){
+    if ((get_p2().x == other.get_p1().x && get_p2().y == other.get_p1().y))
+    {
         return true;
+    }
+
+    if (get_p1().x >= other.get_p1().x && get_p1().x <= other.get_p2().x)
+    {
+        if (get_p1().y >= other.get_p1().y && get_p1().y <= other.get_p2().y)
+        {
+            return true;
+        }
+    }
+
+    if (other.get_p1().x >= get_p1().x && other.get_p1().x <= get_p2().x)
+    {
+        if (other.get_p1().y >= get_p1().y && other.get_p1().y <= get_p2().y)
+        {
+            return true;
+        }
+    }
+
+    if (get_p2().x >= other.get_p1().x && get_p2().x <= other.get_p2().x)
+    {
+        if (get_p2().y >= other.get_p1().y && get_p2().y <= other.get_p2().y)
+        {
+            return true;
+        }
+    }
+
+    if (other.get_p2().x >= get_p1().x && other.get_p2().x <= get_p2().x)
+    {
+        if (other.get_p2().y >= get_p1().y && other.get_p2().y <= get_p2().y)
+        {
+            return true;
+        }
+    }
+
+    if (get_p1().x >= other.get_p1().x && get_p2().x <= other.get_p2().x)
+    {
+        if (get_p1().y >= other.get_p1().y && get_p2().y <= other.get_p2().y)
+        {
+            return true;
+        }
+    }
+
+    if (get_p1().x <= other.get_p1().x && get_p2().x >= other.get_p2().x)
+    {
+        if (get_p1().y <= other.get_p1().y && get_p2().y >= other.get_p2().y)
+        {
+            return true;
+        }
     }
 
     return false;
@@ -97,11 +148,12 @@ bool Rectangle::Overlaps(Rectangle &other)
  * 
  * @param : None
  */
-void Rectangle::Expand(){
+void Rectangle::Expand()
+{
     Point p1_n;
     Point p2_n;
-    p1_n.x = get_p1().x + 1;
-    p1_n.y = get_p1().y + 1;
+    p1_n.x = get_p1().x - 1;
+    p1_n.y = get_p1().y - 1;
     p2_n.x = get_p2().x + 1;
     p2_n.y = get_p2().y + 1;
 
@@ -117,17 +169,20 @@ void Rectangle::Expand(){
  * 
  * @param : None
  */
-void Rectangle::Shrink(){
+void Rectangle::Shrink()
+{
 
     Point p1_n;
     Point p2_n;
 
-    if(GetHeight() == 0 && GetWidth() == 0){
+    if (GetHeight() == 0 && GetWidth() == 0)
+    {
         return;
     }
 
-    if(GetHeight() == 0){
-        p1_n.x = get_p1().x - 1;
+    if (GetHeight() == 0)
+    {
+        p1_n.x = get_p1().x + 1;
         p1_n.y = get_p1().y;
         p2_n.x = get_p2().x - 1;
         p2_n.y = get_p2().y;
@@ -138,9 +193,10 @@ void Rectangle::Shrink(){
         return;
     }
 
-    if(GetWidth() == 0){
+    if (GetWidth() == 0)
+    {
         p1_n.x = get_p1().x;
-        p1_n.y = get_p1().y - 1;
+        p1_n.y = get_p1().y + 1;
         p2_n.x = get_p2().x;
         p2_n.y = get_p2().y - 1;
 
@@ -150,8 +206,8 @@ void Rectangle::Shrink(){
         return;
     }
 
-    p1_n.x = get_p1().x - 1;
-    p1_n.y = get_p1().y - 1;
+    p1_n.x = get_p1().x + 1;
+    p1_n.y = get_p1().y + 1;
     p2_n.x = get_p2().x - 1;
     p2_n.y = get_p2().y - 1;
 

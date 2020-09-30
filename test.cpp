@@ -71,10 +71,27 @@ TEST_CASE("Rectange is made correctly with constructor", "[rectangle]")
     eleven.y = 6;
     Rectangle test_rectangle_5 = Rectangle(ten, eleven);
 
+    Point tweleve, thirteen;
+    tweleve.x = 1;
+    tweleve.y = 1;
+    thirteen.x = 1;
+    thirteen.y = 1;
+    Rectangle test_rectangle_6 = Rectangle(tweleve, thirteen);
+
+    Point fourteen, fifteen;
+    fourteen.x = 2;
+    fourteen.y = 2;
+    fifteen.x = 8;
+    fifteen.y = 8;
+    Rectangle test_rectangle_7 = Rectangle(fourteen, fifteen);
+
     REQUIRE(test_rectangle.Overlaps(test_rectangle_2) == true);
     REQUIRE(test_rectangle.Overlaps(test_rectangle_3) == true);
     REQUIRE(test_rectangle.Overlaps(test_rectangle_4) == true);
     REQUIRE(test_rectangle.Overlaps(test_rectangle_5) == true);
+    REQUIRE(test_rectangle.Overlaps(test_rectangle_6) == true);
+    REQUIRE(test_rectangle_7.Overlaps(test_rectangle) == true);
+    REQUIRE(test_rectangle.Overlaps(test_rectangle_7) == true);
   }
 
   SECTION("Correctly getting the area of the rectangle")
@@ -99,11 +116,12 @@ TEST_CASE("Rectange is made correctly with constructor", "[rectangle]")
     REQUIRE(test_rectangle.get_p1().y == 1);
     REQUIRE(test_rectangle.get_p2().x == 2);
     REQUIRE(test_rectangle.get_p2().y == 2);
+    REQUIRE(test_rectangle.CalculateArea() == 1);
 
     test_rectangle_point.Shrink(); //THIS IS NOT CORRECT BEHAVIOR, PASSING MEANS IT'S NOT WORKING
-    REQUIRE(test_rectangle_point.get_p1().x == 1);
-    REQUIRE(test_rectangle_point.get_p1().y == 1);
-    REQUIRE(test_rectangle_point.get_p2().y == -1);
-    REQUIRE(test_rectangle_point.get_p2().y == -1);
+    REQUIRE(test_rectangle_point.get_p1().x == 0);
+    REQUIRE(test_rectangle_point.get_p1().y == 0);
+    REQUIRE(test_rectangle_point.get_p2().y == 0);
+    REQUIRE(test_rectangle_point.get_p2().y == 0);
   }
 }
